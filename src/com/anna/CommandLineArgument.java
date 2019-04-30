@@ -6,24 +6,33 @@ import org.kohsuke.args4j.Option;
 
 
 public class CommandLineArgument {
+    public boolean isKeySubDir() {
+        return keySubDir;
+    }
+
+    public String getKeyDir() {
+        return keyDir;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Option(name = "-r", usage = "subdirectory search required")
-    public boolean keySubDir;
+    private boolean keySubDir;
 
     @Option(name = "-d", usage = "directory search")
-    public boolean keyDir;
+    private String keyDir;
 
-    @Argument(index = 0)
-    public String dir;
-
-    @Argument(index = 1)
-    public String name;
+    @Argument()
+    private String name;
 
     public CommandLineArgument(String[] args) {
         CmdLineParser parser = new CmdLineParser(this);
         try {
             parser.parseArgument(args);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }
