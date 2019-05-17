@@ -1,6 +1,7 @@
 package com.anna;
 
 import org.kohsuke.args4j.Argument;
+import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
@@ -27,12 +28,8 @@ public class CommandLineArgument {
     @Argument()
     private String name;
 
-    public CommandLineArgument(String[] args) {
+    public CommandLineArgument(String[] args) throws CmdLineException {
         CmdLineParser parser = new CmdLineParser(this);
-        try {
-            parser.parseArgument(args);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        parser.parseArgument(args);
     }
 }
